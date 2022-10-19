@@ -31,11 +31,11 @@ namespace BookStoreApp.API.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookDto>>> GetBooks()
+        public async Task<ActionResult<IEnumerable<BookReadOnlyDto>>> GetBooks()
         {
             var booksDto = await _context.Books
                 .Include(a => a.Author)
-                .ProjectTo<BookDto>(mapper.ConfigurationProvider)
+                .ProjectTo<BookReadOnlyDto>(mapper.ConfigurationProvider)
                 .ToListAsync();
 
             //var booksDto = mapper.Map<IEnumerable<BookDto>>(books);
